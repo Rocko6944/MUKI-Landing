@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta | Muckialom</title>
+  <meta name="description" content="Explora la carta de Muckialom: platos y bebidas en una experiencia premium.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="carta.css">
+  <link rel="icon" type="image/png" href="Images/logoOficial.png">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="header__logo" aria-label="Muckialom inicio">
+        <img src="Images/LogoHeader.png" alt="Muckialom Restaurante">
+      </a>
+
+      <nav class="header__nav" id="main-nav" aria-label="Navegacion principal">
+        <a href="index.html" class="header__nav-link">Inicio</a>
+        <a href="carta.html" class="header__nav-link active">Carta</a>
+        <a href="reservar.html" class="header__cta">Reservar</a>
+      </nav>
+
+      <button class="header__menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="menu-page">
+    <section class="carta-hero">
+      <div class="carta-hero__background">
+        <img src="Images/FondoCarta.png" alt="Barra y mesa del restaurante">
+      </div>
+      <div class="carta-hero__overlay"></div>
+
+      <div class="carta-hero__content">
+        <h1 class="carta-hero__title fade-in">NUESTRA CARTA</h1>
+        <p class="carta-hero__subtitle fade-in">Un viaje sensorial por el Peru</p>
+
+        <div class="carta-hero__filters fade-in">
+          <button class="filter-btn active" data-filter="platos">Platos</button>
+          <button class="filter-btn" data-filter="bebidas">Bebidas</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="section-platos">
+      <div class="container">
+        <h2 class="menu-section__title fade-in">PLATOS</h2>
+        <div class="menu-categories" id="platos-categories"></div>
+      </div>
+    </section>
+
+    <section class="menu-section menu-section--drinks" id="section-bebidas">
+      <div class="container">
+        <h2 class="menu-section__title fade-in">BEBIDAS</h2>
+        <div class="menu-categories" id="bebidas-categories"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__pattern">
+      <img src="Images/FondoFooter.png" alt="" aria-hidden="true">
+    </div>
+    <div class="footer__content container">
+      <div class="footer__grid">
+        <div class="footer__brand fade-in">
+          <a href="index.html" class="footer__brand-logo">
+            <img src="Images/logoOficial.png" alt="Muckialom Restaurante">
+          </a>
+          <p class="footer__brand-text">
+            Desde la tradicion andina y amazonica se encuentran en una experiencia culinaria premium. Reserve su momento.
+          </p>
+        </div>
+
+        <div class="footer__contact fade-in">
+          <h3 class="footer__contact-title">CONTACTO Y HORARIOS</h3>
+          <ul class="footer__contact-list">
+            <li>
+              <a href="tel:+51957483189" class="footer__contact-item">
+                <img src="Images/IconoTelefono.png" alt="" aria-hidden="true">
+                <span>+51 957 483 189</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://maps.google.com" target="_blank" rel="noopener" class="footer__contact-item">
+                <img src="Images/IconoDireccion.png" alt="" aria-hidden="true">
+                <span>Av. Aeropuerto 202 - 204,<br>Kimbiri 08800, Peru</span>
+              </a>
+            </li>
+            <li>
+              <div class="footer__contact-item">
+                <img src="Images/IconoHorario.png" alt="" aria-hidden="true">
+                <span>Lun - Sab: 12:00 - 23:00<br>Dom: 12:00 - 22:00</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__social fade-in">
+          <h3 class="footer__social-title">NUESTRAS REDES</h3>
+          <div class="footer__social-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+              <img src="Images/IconoFacebook.png" alt="" aria-hidden="true">
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
+              <img src="Images/IconoInstagram.png" alt="" aria-hidden="true">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>@ 2026 Muckialom Restaurante. Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/51985483189" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.004 0h-.008C7.174 0 .002 7.174.002 16c0 3.5 1.128 6.742 3.046 9.378L1.06 31.29l6.156-1.952A15.91 15.91 0 0016.004 32C24.826 32 32 24.826 32 16S24.826 0 16.004 0zm9.31 22.604c-.39 1.098-1.924 2.01-3.15 2.276-.84.178-1.938.32-5.632-1.21-4.726-1.956-7.77-6.756-8.004-7.07-.226-.312-1.846-2.462-1.846-4.696 0-2.234 1.168-3.332 1.584-3.786.39-.422.918-.602 1.224-.602.15 0 .286.008.408.014.416.018.624.042.898.694.342.812 1.176 2.876 1.278 3.086.104.21.202.486.066.77-.126.292-.234.422-.444.648-.21.226-.41.398-.618.642-.19.216-.404.446-.172.866.232.416 1.032 1.702 2.216 2.758 1.524 1.358 2.806 1.78 3.222 1.976.416.196.658.166.9-.1.248-.272 1.064-1.234 1.348-1.66.278-.422.562-.35.946-.21.39.136 2.448 1.154 2.866 1.364.416.21.694.314.796.49.1.174.1 1.018-.29 2.116z"/>
+    </svg>
+  </a>
+
+  <script src="main.js"></script>
+  <script src="carta.js"></script>
+</body>
+</html>

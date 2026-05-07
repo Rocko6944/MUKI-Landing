@@ -1,0 +1,328 @@
+.reserve-page {
+  background: var(--color-black);
+}
+
+.reserve-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 1.9rem 0 0;
+}
+
+.reserve-hero__background,
+.reserve-hero__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.reserve-hero__background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reserve-hero__overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.72) 74%, rgba(0, 0, 0, 0.92) 100%),
+    rgba(0, 0, 0, 0.24);
+}
+
+.reserve-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1260px);
+  margin: 0 auto;
+  padding: 1rem 24px 0;
+}
+
+.reserve-panel {
+  width: min(100%, 820px);
+  margin: 0 auto;
+}
+
+.reserve-form-card {
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 28px 28px 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.reserve-form-card__title {
+  background: #f8f6f0;
+  color: #101010;
+  border: 2px solid var(--color-gold);
+  padding: 30px 30px 18px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-weight: 640;
+  margin-bottom: 0;
+}
+
+.reservation-form {
+  background: #f8f6f0;
+  border-left: 2px solid var(--color-gold);
+  border-right: 2px solid var(--color-gold);
+  border-bottom: 2px solid var(--color-gold);
+  padding: 26px 32px 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #171717;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #d8d8d8;
+  background: #050505;
+  color: #ffffff;
+  padding: 0.85rem 1rem;
+  font-size: 0.98rem;
+  border-radius: 6px;
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.date-input-wrap {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+}
+
+.date-input-wrap input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color-scheme: dark;
+}
+
+.date-input-wrap__icon {
+  display: grid;
+  place-items: center;
+  border-radius: 0 6px 6px 0;
+  background: var(--color-gold);
+  color: #141414;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
+.number-counter {
+  display: grid;
+  grid-template-columns: 76px 1fr 76px;
+  align-items: stretch;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.number-counter__btn {
+  background: #ffffff;
+  color: #111111;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.number-counter__value {
+  border: 0;
+  border-left: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+  background: #ffffff;
+  color: #111111;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  min-height: 50px;
+}
+
+.time-selector {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.time-selector__label {
+  color: #161616;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.time-selector__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.time-slot {
+  min-height: 56px;
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+  color: #171717;
+  background: #ffffff;
+  font-size: 1rem;
+  transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.time-slot.selected {
+  background: var(--color-gold);
+  box-shadow: inset 0 0 0 3px #ffffff, 0 0 0 3px var(--color-red);
+}
+
+.reservation-submit {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.btn--submit {
+  width: 100%;
+  min-height: 84px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #e7c549 0%, #d5af31 100%);
+  color: #111111;
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+  font-weight: 640;
+  box-shadow: inset 0 0 0 4px #ffffff, 0 0 0 3px var(--color-red);
+}
+
+.reserve-policies {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 34px;
+  padding: 26px 30px 34px;
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.reserve-policies__column h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.reserve-policies__title-spaced {
+  margin-top: 28px;
+}
+
+.reserve-policies__list {
+  display: grid;
+  gap: 10px;
+}
+
+.reserve-policies__item,
+.reserve-policies__text {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.96rem;
+}
+
+.reserve-policies__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.reserve-policies__dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.reservation-success {
+  display: none;
+  background: #f8f6f0;
+  border-left: 2px solid var(--color-gold);
+  border-right: 2px solid var(--color-gold);
+  border-bottom: 2px solid var(--color-gold);
+  padding: 32px;
+  text-align: center;
+}
+
+.reservation-success.show {
+  display: block;
+}
+
+.reservation-success__title {
+  color: #101010;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.reservation-success__text {
+  color: #232323;
+}
+
+@media (max-width: 900px) {
+  .time-selector__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .reserve-policies {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .reserve-shell {
+    padding-inline: 14px;
+  }
+
+  .reserve-form-card {
+    padding: 14px 14px 16px;
+  }
+
+  .reserve-form-card__title {
+    padding: 22px 18px 14px;
+    line-height: 1.08;
+  }
+
+  .reservation-form {
+    grid-template-columns: 1fr;
+    padding: 20px 18px 24px;
+  }
+
+  .btn--submit {
+    min-height: 72px;
+    font-size: 1.6rem;
+  }
+
+  .reserve-policies {
+    padding: 22px 18px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-selector__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .date-input-wrap {
+    grid-template-columns: 1fr 52px;
+  }
+
+  .number-counter {
+    grid-template-columns: 58px 1fr 58px;
+  }
+
+  .number-counter__value {
+    font-size: 1.2rem;
+  }
+}
