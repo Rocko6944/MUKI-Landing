@@ -1,5 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const chevronSvg = '<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+  const normalizeName = (name) => name.trim().toLowerCase();
+  const platoImages = {
+    "arroz a lo muki": "Images/Arroz a lo muki.png",
+    "buen provecho": "Images/Buen provecho.png",
+    "causita libertador": "Images/Causita libertador.png",
+    "causita noble y elegante": "Images/Causita noble y elegante.png",
+    "causita peru": "Images/Causita Peru.png",
+    "ceviche a lo muki": "Images/Ceviche a lo muki.png",
+    "ceviche mixto especial": "Images/Ceviche mixto especial.png",
+    "chaufa a lo muki": "Images/Chaufa a lo muki.png",
+    "doncella a lo muki": "Images/Doncella a lo muki.png",
+    "el comandante": "Images/El comandante.png",
+    "leche a lo muki": "Images/Leche a lo muki.png",
+    "medallones a lo muki": "Images/Medallones a lo muki.png",
+    "pollo a lo muki": "Images/Pollo a lo muki.png",
+    "saltado de lomo a lo muki": "Images/Saltado de lomo a lo muki.png",
+    "saltado de rigatoni": "Images/Saltado de rigatoni.png",
+    "tesoro vraino": "Images/Tesoro vraino.png"
+  };
 
   const platosData = [
     {
@@ -342,50 +360,98 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  const buildCategory = (category, kind) => {
-    const wrapper = document.createElement("article");
-    wrapper.className = `menu-category menu-category--${kind}${category.open ? " open" : ""}`;
+  const groupMenuData = (data, featuredName, classicName) => [
+    {
+      ...data[0],
+      name: featuredName
+    },
+    {
+      name: classicName,
+      items: data.slice(1).flatMap((category) => category.items)
+    }
+  ];
 
-    const itemsHtml = category.items.length > 0
-      ? category.items.map((item) => `
-        <div class="menu-item">
-          <div class="menu-item__header">
-            <span class="menu-item__name">${item.name}</span>
-            <span class="menu-item__dots"></span>
-            <span class="menu-item__price">${item.price}</span>
-          </div>
-          ${item.desc ? `<p class="menu-item__description">${item.desc}</p>` : ""}
+  const platosGroupedData = groupMenuData(
+    platosData,
+    "PLATOS RECOMENDADOS POR LA CASA",
+    "PLATOS CLASICOS"
+  );
+  const bebidasGroupedData = groupMenuData(
+    bebidasData,
+    "BEBIDAS RECOMENDADAS POR LA CASA",
+    "BEBIDAS CLASICAS"
+  );
+
+  const menuModal = document.createElement("div");
+  menuModal.className = "menu-modal";
+  menuModal.setAttribute("aria-hidden", "true");
+  menuModal.innerHTML = `
+    <div class="menu-modal__backdrop" data-close-modal></div>
+    <section class="menu-modal__panel" role="dialog" aria-modal="true" aria-labelledby="menu-modal-title">
+      <button class="menu-modal__close" type="button" aria-label="Cerrar carta" data-close-modal>&times;</button>
+      <h2 class="menu-modal__title" id="menu-modal-title"></h2>
+      <div class="menu-modal__content"></div>
+    </section>
+  `;
+  document.body.appendChild(menuModal);
+
+  const menuModalPanel = menuModal.querySelector(".menu-modal__panel");
+  const menuModalTitle = menuModal.querySelector(".menu-modal__title");
+  const menuModalContent = menuModal.querySelector(".menu-modal__content");
+  const menuModalClose = menuModal.querySelector(".menu-modal__close");
+
+  const buildModalItem = (item, kind) => {
+    const imageSrc = kind === "food" ? platoImages[normalizeName(item.name)] : "";
+
+    return `
+      <article class="menu-modal-item">
+        <div class="menu-modal-item__header">
+          <h4 class="menu-modal-item__name">${item.name}</h4>
+          <span class="menu-modal-item__price">${item.price}</span>
         </div>
-      `).join("")
-      : "";
-
-    wrapper.innerHTML = `
-      <div class="menu-category__header">
-        <span class="menu-category__name">
-          <span class="cat-dot"></span>
-          ${category.name}
-        </span>
-        <span class="menu-category__toggle">${chevronSvg}</span>
-      </div>
-      <div class="menu-category__content">${itemsHtml}</div>
+        ${imageSrc ? `<img class="menu-modal-item__image" src="${imageSrc}" alt="${item.name}" loading="lazy">` : ""}
+        ${item.desc ? `<p class="menu-modal-item__description">${item.desc}</p>` : ""}
+      </article>
     `;
-
-    wrapper.querySelector(".menu-category__header").addEventListener("click", () => {
-      wrapper.classList.toggle("open");
-    });
-
-    return wrapper;
   };
 
-  const platosContainer = document.getElementById("platos-categories");
-  const bebidasContainer = document.getElementById("bebidas-categories");
+  const openMenuModal = (title, categories, kind) => {
+    menuModalTitle.textContent = title;
+    menuModalContent.innerHTML = categories.map((category) => `
+      <section class="menu-modal-category">
+        <h3 class="menu-modal-category__title">${category.name}</h3>
+        <div class="menu-modal-category__grid">
+          ${category.items.map((item) => buildModalItem(item, kind)).join("")}
+        </div>
+      </section>
+    `).join("");
 
-  platosData.forEach((category) => platosContainer.appendChild(buildCategory(category, "food")));
-  bebidasData.forEach((category) => bebidasContainer.appendChild(buildCategory(category, "drink")));
+    menuModalPanel.scrollTop = 0;
+    menuModal.classList.add("open");
+    menuModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("menu-modal-open");
+    menuModalClose.focus();
+  };
+
+  const closeMenuModal = () => {
+    menuModal.classList.remove("open");
+    menuModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("menu-modal-open");
+  };
+
+  menuModal.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close-modal]")) {
+      closeMenuModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuModal.classList.contains("open")) {
+      closeMenuModal();
+    }
+  });
 
   const filterButtons = document.querySelectorAll(".filter-btn");
-  const platosSection = document.getElementById("section-platos");
-  const bebidasSection = document.getElementById("section-bebidas");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -393,9 +459,9 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.add("active");
 
       if (button.dataset.filter === "platos") {
-        platosSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        openMenuModal("PLATOS", platosGroupedData, "food");
       } else {
-        bebidasSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        openMenuModal("BEBIDAS", bebidasGroupedData, "drink");
       }
     });
   });
